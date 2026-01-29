@@ -3,12 +3,20 @@ import logging.config
 import requests
 from api.config.settings import BASE_URL, LOGGING_CONFIG
 
+# 로깅 설정 로드
 logging.config.dictConfig(LOGGING_CONFIG)
+# 현재 모듈 기준 로거 생성
 logger = logging.getLogger(__name__)
 
 
 class BaseClient:
-
+    
+    """
+    모든 API Client의 부모 클래스
+    - HTTP 요청 공통 처리
+    - 로깅 공통 처리
+    """
+    
     def _request(self, method, endpoint, **kwargs):
         url = f"{BASE_URL}{endpoint}"
 
